@@ -16,6 +16,14 @@ public class Picture
     private Canvas pic;
     private Rect ground;
     private Circle[] snow;
+    private Circle[] smoke;
+    private Rect HouseMain;
+    private Triangle HouseRoof;
+    private Rect HouseChimney;
+    private Rect Window1;
+    private Rect Window2;
+
+
     private Circle ball; // The sample ball to animate
     private int dx = 5; // Speed in x direction for the sample ball
     private int dy = -5; // Speed in y direction for the sample ball
@@ -30,11 +38,22 @@ public class Picture
         // Turn off automatic redrawing
         pic.pause(true);
 
-        snow = new Circle[100];
+        snow = new Circle[200];
+        smoke = new Circle[3];
+        HouseMain = new Rect();
+        HouseChimney = new Rect();
+        HouseRoof = new Triangle();
+        Window1 = new Rect();
+        Window2 = new Rect();
 
         for (int i = 0; i < snow.length; i++) {
-            snow[i] = new Circle(((int) (Math.random() * 850)), ((int) (Math.random() * 100)), 2, "white", true);
+            snow[i] = new Circle(((int) (Math.random() * 850)), ((int) (Math.random() * 600) - 50), 2, "white", true);
         }
+
+        // for (int i = 0; i < smoke.length; i++) {
+        //     smoke[i] = new Circle(10, (i * 20) + 500, 1, "black", true);
+        //     smoke[i].setX(10);
+        // }
 
         ground = new Rect();
         ground.changeSize(25, 850);
@@ -83,14 +102,31 @@ public class Picture
         // Move the ball
         ball.setPosition(x, y);
 
+        // for (int i = 0; i < smoke.length; i++) {
+        //     Circle currentsmoke = smoke[i];
+        //     if (currentsmoke.getY() < 0){
+        //         System.out.println("reset!!!");
+        //         currentsmoke.setY(575);
+        //         currentsmoke.setX(10);
+        //         currentsmoke.changeSize(1);
+        //     }
+        //     else{
+        //         currentsmoke.setY(currentsmoke.getY() - 2);
+        //         //currentsmoke.setX(currentsmoke.getX() + 1);
+        //         currentsmoke.changeSize((currentsmoke.getY() - pic.getHeight()) * -1);
+        //     }
+        // }
+
         for (int i = 0; i < snow.length; i++) {
             Circle currentsnow = snow[i];
-            if (currentsnow.getY() > 575){
-                System.out.println("reset!!!");
-                currentsnow.setY(0);
+            if (currentsnow.getY() > 575 || currentsnow.getX() < 0){
+                //System.out.println("reset!!!");
+                currentsnow.setY(((int) (Math.random() * 600) - 50));
+                currentsnow.setX(((int) (Math.random() * 1000)));
             }
             else{
-                currentsnow.setY(currentsnow.getY() + 3);
+                currentsnow.setX(currentsnow.getX() + 5);
+                currentsnow.setY(currentsnow.getY() + 5);
             }
         }
         
