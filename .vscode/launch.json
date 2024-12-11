@@ -9,6 +9,13 @@
             "name": "Picture",
             "request": "launch",
             "mainClass": "Picture",
+            "projectName": "winterscene-THNDRNoob_722f2ce7"
+        },
+        {
+            "type": "java",
+            "name": "Picture",
+            "request": "launch",
+            "mainClass": "Picture",
             "projectName": "WinterScene_42a36e29"
         }
     ]

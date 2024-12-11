@@ -1,4 +1,6 @@
 
+import java.io.Console;
+
 import javax.swing.Timer;
 
 /**
@@ -12,6 +14,8 @@ public class Picture
 {
     // Private member (instance) variables
     private Canvas pic;
+    private Rect ground;
+    private Circle[] snow;
     private Circle ball; // The sample ball to animate
     private int dx = 5; // Speed in x direction for the sample ball
     private int dy = -5; // Speed in y direction for the sample ball
@@ -21,12 +25,24 @@ public class Picture
         // Get a reference to the canvas for this drawing and set its title.
         pic = Canvas.getCanvas();
         pic.setTitle("Bouncing Ball");
-        pic.setBackgroundColor("white");
+        pic.setBackgroundColor("blue");
         
         // Turn off automatic redrawing
         pic.pause(true);
-        
+
+        snow = new Circle[100];
+
+        for (int i = 0; i < snow.length; i++) {
+            snow[i] = new Circle(((int) (Math.random() * 850)), ((int) (Math.random() * 100)), 2, "white", true);
+        }
+
+        ground = new Rect();
+        ground.changeSize(25, 850);
+        ground.setPosition(0, 575);
+        ground.makeVisible();
+        ground.changeColor("white");
         ball = new Circle();
+        ball.changeColor("red");
         ball.makeVisible();
         
         // Show the initial picture
@@ -66,6 +82,17 @@ public class Picture
         
         // Move the ball
         ball.setPosition(x, y);
+
+        for (int i = 0; i < snow.length; i++) {
+            Circle currentsnow = snow[i];
+            if (currentsnow.getY() > 575){
+                System.out.println("reset!!!");
+                currentsnow.setY(0);
+            }
+            else{
+                currentsnow.setY(currentsnow.getY() + 3);
+            }
+        }
         
         // Update the screen
         pic.redraw();
