@@ -62,7 +62,7 @@ public class Picture
         ground.changeColor("white");
         ball = new Circle();
         ball.changeColor("red");
-        ball.makeVisible();
+        // ball.makeVisible();
         
         // Show the initial picture
         pic.redraw();
@@ -119,10 +119,11 @@ public class Picture
 
         for (int i = 0; i < snow.length; i++) {
             Circle currentsnow = snow[i];
-            if (currentsnow.getY() > 575 || currentsnow.getX() < 0){
+            if (currentsnow.getY() > 575 || currentsnow.getX() > 850){
                 //System.out.println("reset!!!");
-                currentsnow.setY(((int) (Math.random() * 600) - 50));
-                currentsnow.setX(((int) (Math.random() * 1000)));
+                //currentsnow.setY((int) (Math.random() * 850));
+                currentsnow.setY((int) (Math.random() * 10) - 20);
+                currentsnow.setX(((int) (Math.random() * 850) * 2 - 850));
             }
             else{
                 currentsnow.setX(currentsnow.getX() + 5);
