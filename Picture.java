@@ -16,12 +16,13 @@ public class Picture
     private Canvas pic;
     private Rect ground;
     private Circle[] snow;
-    private Circle[] smoke;
     private Rect HouseMain;
     private Triangle HouseRoof;
     private Rect HouseChimney;
     private Rect Window1;
     private Rect Window2;
+    private Circle PersonHead;
+    private Triangle PersonBody;
 
 
     private Circle ball; // The sample ball to animate
@@ -38,22 +39,53 @@ public class Picture
         // Turn off automatic redrawing
         pic.pause(true);
 
-        snow = new Circle[200];
-        smoke = new Circle[3];
+        snow = new Circle[400];
         HouseMain = new Rect();
         HouseChimney = new Rect();
         HouseRoof = new Triangle();
         Window1 = new Rect();
         Window2 = new Rect();
+        PersonHead = new Circle();
+        PersonBody = new Triangle();
+
+        HouseMain.changeSize(125, 150);
+        HouseMain.changeColor("#202020");
+        HouseMain.setPosition(100, 450);
+        HouseMain.makeVisible();
+
+        Window1.changeSize(40, 25);
+        Window1.changeColor("#904000");
+        Window1.setPosition(120, 490);
+        Window1.makeVisible();
+
+        Window2.changeSize(40, 25);
+        Window2.changeColor("#904000");
+        Window2.setPosition(205, 490);
+        Window2.makeVisible();
+
+        HouseRoof.changeSize(50, 175);
+        HouseRoof.changeColor("#202020");
+        HouseRoof.setPosition(173, 400);
+        HouseRoof.makeVisible();
+
+        HouseChimney.changeSize(50, 35);
+        HouseChimney.changeColor("#202020");
+        HouseChimney.setPosition(200, 400);
+        HouseChimney.makeVisible();
+
+        PersonHead.changeSize(20);;
+        PersonHead.changeColor("#202020");
+        PersonHead.setPosition(208, 500);
+        PersonHead.makeVisible();
+
+        PersonBody.changeSize(30, 20);
+        PersonBody.changeColor("#202020");
+        PersonBody.setPosition(218, 500);
+        PersonBody.makeVisible();
 
         for (int i = 0; i < snow.length; i++) {
             snow[i] = new Circle(((int) (Math.random() * 850)), ((int) (Math.random() * 600) - 50), 2, "white", true);
         }
-
-        // for (int i = 0; i < smoke.length; i++) {
-        //     smoke[i] = new Circle(10, (i * 20) + 500, 1, "black", true);
-        //     smoke[i].setX(10);
-        // }
 
         ground = new Rect();
         ground.changeSize(25, 850);
@@ -101,21 +133,6 @@ public class Picture
         
         // Move the ball
         ball.setPosition(x, y);
-
-        // for (int i = 0; i < smoke.length; i++) {
-        //     Circle currentsmoke = smoke[i];
-        //     if (currentsmoke.getY() < 0){
-        //         System.out.println("reset!!!");
-        //         currentsmoke.setY(575);
-        //         currentsmoke.setX(10);
-        //         currentsmoke.changeSize(1);
-        //     }
-        //     else{
-        //         currentsmoke.setY(currentsmoke.getY() - 2);
-        //         //currentsmoke.setX(currentsmoke.getX() + 1);
-        //         currentsmoke.changeSize((currentsmoke.getY() - pic.getHeight()) * -1);
-        //     }
-        // }
 
         for (int i = 0; i < snow.length; i++) {
             Circle currentsnow = snow[i];
